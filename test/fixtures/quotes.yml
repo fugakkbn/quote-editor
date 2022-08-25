@@ -1,6 +1,11 @@
 first:
+  company: kpmg
   name: 最初の引用文
+
 second:
+  company: kpmg
   name: 二番目の引用文
+
 third:
+  company: kpmg
   name: 三番目の引用文
