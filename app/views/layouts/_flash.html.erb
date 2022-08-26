@@ -1,5 +1,11 @@
 <% flash.each do |flash_type, message| %>
-  <div class="flash__message">
+  <!-- data-controller: removals Controller に接続-->
+  <!-- data-action: action->Controller#method-->
+  <div
+    class="flash__message"
+    data-controller="removals"
+    data-action="animationend->removals#remove"
+  >
     <%= message %>
   </div>
 <% end %>
