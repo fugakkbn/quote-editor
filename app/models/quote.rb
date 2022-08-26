@@ -5,9 +5,8 @@ class Quote < ApplicationRecord
 
   scope :ordered, -> { order(id: :desc) }
 
-  # after_create_commit -> { broadcast_prepend_later_to 'quotes' }
-  # after_update_commit -> { broadcast_replace_later_to 'quotes' }
-  # after_destroy_commit -> { broadcast_remove_to 'quotes' }
-  #   これらは1行で以下のように書ける
-  broadcasts_to -> (quote) { 'quotes' }, inserts_by: :prepend
+  # Company ごとに broadcast 先を変える必要がある
+  # 変えないと、違う Company のユーザにも broadcast されてしまい、
+  # 一時的に Quote が見えてしまう。
+  broadcasts_to -> (quote) { [quote.company, 'quotes'] }, inserts_by: :prepend
 end
